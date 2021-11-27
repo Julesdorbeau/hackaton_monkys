@@ -62,12 +62,14 @@ pd.set_option('display.max_columns', None)
 #df = df.set_index(df.recipe_title)
 #df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation']]
 
-print(get_empty_ingredient_dict())
+#print(get_empty_ingredient_dict())
 #print(recipe_selection('sugar'))
 
 
 # CONVERTION TO JSON 
-js = df.to_json("json_test.json", orient = 'index')
+# Pour save en fichier .json : js = df.to_json('json_test.json', orient = 'index')
+js = df.to_json(orient = 'index')
+print(js)
 
 
 """

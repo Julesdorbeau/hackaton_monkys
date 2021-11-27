@@ -65,6 +65,11 @@ pd.set_option('display.max_columns', None)
 print(get_empty_ingredient_dict())
 #print(recipe_selection('sugar'))
 
+
+# CONVERTION TO JSON 
+js = df.to_json("json_test.json", orient = 'index')
+
+
 """
 print("========== DATAFRAME SANS MODIFICATIONS ==========")
 print(df.head())

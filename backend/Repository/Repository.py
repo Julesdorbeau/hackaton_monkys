@@ -12,8 +12,10 @@ def read_user_data(username):
 #write the corresponding json into the csv file
 def write_user_data(json):
     helpers.write_json_in_csv(csv_path_user,json)
+
 #get all the producer
 def fetch_producer():
     json=helpers.make_json(csv_path_producer)
     print(json)
     return json if json else json.dumps('"error":"404 not found"')
+

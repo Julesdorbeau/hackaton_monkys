@@ -66,13 +66,11 @@
                           v-on="on"
                       >
                         <v-card-title class="text-h5">
-                          Rate Our Framework
+                         Recipe
                         </v-card-title>
                         <v-card-text>
                           <v-img src="https://picsum.photos/id/11/500/300"></v-img>
-                          If you enjoy using Vuetify, please take a few seconds to rate your experience with the framework. It really helps!
-
-
+                          Lorem ipsum set doloret
                         </v-card-text>
 
                       </v-card>
@@ -80,12 +78,12 @@
 
                     <v-card>
                       <v-card-title class="text-h5 grey lighten-2">
-                        Privacy Policy
+                      Details
                       </v-card-title>
 
                       <v-card-text>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                      </v-card-text>
+
+                     </v-card-text>
 
                       <v-divider></v-divider>
 

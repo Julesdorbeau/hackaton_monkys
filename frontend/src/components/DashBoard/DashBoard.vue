@@ -36,8 +36,8 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="green lighten-5">
-      <v-container>
+    <v-main class="green lighten-5" >
+      <v-container id="main_app">
         <v-row>
           <template v-for="n in 2">
             <v-col
@@ -121,3 +121,6 @@ components:{
 }
 }
 </script>
+<style scoped>
+
+</style>

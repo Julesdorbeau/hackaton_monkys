@@ -12,6 +12,7 @@ def region_selection(df, region_choice):
 
 df = pd.read_csv("generated_dataframe.csv")
 pd.set_option('display.max_columns', None)
+
 print("========== DATAFRAME SANS MODIFICATIONS ==========")
 print(df.head())
 print()
@@ -26,6 +27,7 @@ df_idf = region_selection(df, 'ILE DE FRANCE')
 print(df_idf.head())
 print()
 print("========== RACA REGION SELECTION ==========")
-df_idf = region_selection(df, 'RHONE ALPES COTES D_AZUR')
-print(df_idf.head())
+df_raca = region_selection(df, 'RHONE ALPES COTES D_AZUR')
+print(df_raca.head())
 print()
+

@@ -57,26 +57,35 @@ def get_empty_ingredient_dict():
     return res_dict['coeficient']
 
 
-df = pd.read_csv("../data/recipies_and_ingredients_data/ingredient.csv")
+df = pd.read_csv("../data/recipies_and_ingredients_data/ingredient_fix.csv")
 pd.set_option('display.max_columns', None)
-#df = df.set_index(df.recipe_title)
-#df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation']]
+df = df.set_index(df.recipe_title)
+df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation', 'origin']]
 
 #print(get_empty_ingredient_dict())
 #print(recipe_selection('sugar'))
 
+#print("========== DATAFRAME SANS MODIFICATIONS ==========")
+#print(df.head())
+#print()
+
+
+# CREATION OF CLEAN DATA RECIPIES : 
+#df.to_csv('clean_csv_recipies.csv')
+# LECTURE DU CLEAN : 
+df_clean = pd.read_csv("clean_csv_recipies.csv")
+# SI ON VEUT REPASSER EN recipe_title pour index
+#df = df.set_index(df.recipe_title)
+#df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation', 'origin']]
 
 # CONVERTION TO JSON 
+df_json = pd.read_csv("../data/recipies_and_ingredients_data/ingredient.csv")
+pd.set_option('display.max_columns', None)
 # Pour save en fichier .json : js = df.to_json('json_test.json', orient = 'index')
-js = df.to_json(orient = 'index')
+js = df_clean.to_json(orient = 'index')
 print(js)
 
 
-"""
-print("========== DATAFRAME SANS MODIFICATIONS ==========")
-print(df.head())
-print()
-"""
 
 """
 Creating the dictionnary for the ingredients

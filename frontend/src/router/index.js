@@ -20,8 +20,8 @@ const routes = [
     component: Dashboard,
     props: {}
   }, {
-    path: '/TastTest',
-    name: 'TastTest',
+    path: '/TasteTest',
+    name: 'TasteTest',
     component: TasteTest,
     props: {}
   },

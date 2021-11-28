@@ -1,13 +1,13 @@
 <template>
-  <v-app id="inspire" class="main_app">
-    <div v-if="false">
+  <v-app id="inspire" class="">
+    <div v-if="!this.recipes_arrived">
       <TasteTest @on-recipes-change="this.recipes_changed"></TasteTest>
     </div>
-<div v-if="true" >
+<div v-if="this.recipes_arrived"   class="amogus" >
     <v-app-bar class="green lighten-4" app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Amogus</v-toolbar-title>
+      <v-toolbar-title>Miam</v-toolbar-title>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -39,7 +39,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="green lighten-5" >
+    <v-main class="" >
       <v-container id="main_app">
         <v-row>
           <template >
@@ -486,7 +486,7 @@ data: () => ({
 }
 </script>
 <style scoped>
-#main_app {
+.amogus {
   background: url('https://c.pxhere.com/photos/1e/84/corn_crops_farm_field_food-979172.jpg!d');
   background-size: cover;
   width: 100%;

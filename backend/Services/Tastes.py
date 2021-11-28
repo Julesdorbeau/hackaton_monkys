@@ -1,5 +1,4 @@
 import data_treatment.dataframe_functions_use as dataframe
-
 ingredients = dataframe.get_empty_ingredient_dict()
 please_dont=[]
 # list of all the most heaviest ingredient
@@ -76,6 +75,25 @@ def compute_feedback(array):
         print("this is the grade :"+grade)
         rate_ingredient(recipe_name,grade)
     return aaa
+
+
+
+#get all thre producer of each ingredients in the array
+# return an array with productor
+def get_producer(recipes):
+    arr=[]
+    for recipe in recipes:
+        products=dataframe.fetch_ingredient_per_recipe(recipe)
+        array2=[]
+        for i in products:
+            array2.append(i)
+            productors =dataframe.fetch_producer(products)
+            array2.append(productors)
+        arr.append(array2)
+    print(arr)
+    return arr
+
+
 """
 driver function that launch the ia thinking.
 It take the body of the request ( see main.py) as arguement, wich is an array of string, and return another array of string
@@ -85,7 +103,9 @@ def launch_ia(request_body):
     dont =compute_feedback(request_body)
     #then we ask the ia for new recipes :
     best_recipe= fetch_tastefull_recipe(dont)
+    get_producer(best_recipe)
     print("BLIP BLOP those are the recipes that fit the best :",best_recipe)
+    print("those are the productor")
     return best_recipe
 
 

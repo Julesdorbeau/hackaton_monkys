@@ -6,62 +6,30 @@
     Where can i buy this
 
     <v-card-text>
-      <div class=" mt-12">
-        <v-list-item-content>
-          <v-list-item-title >vendeur 1</v-list-item-title>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+            <tr>
+              <th class="text-left">
+                Name
+              </th>
+              <th class="text-left">
+                product
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                v-for="item in desserts"
+                :key="item.name"
+            >
+              <td>{{ item.name }}</td>
+              <td>{{ item.calories }}</td>
+            </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
 
-          <v-list-item-subtitle
-              class="text--primary"
-          >
-            vend X
-          </v-list-item-subtitle>
-
-          <v-list-item-subtitle > à Y</v-list-item-subtitle>
-        </v-list-item-content>
-
-      </div>
-      <div class=" mt-12">
-        <v-list-item-content>
-          <v-list-item-title >vendeur 2</v-list-item-title>
-
-          <v-list-item-subtitle
-              class="text--primary"
-          >
-            vend X
-          </v-list-item-subtitle>
-
-          <v-list-item-subtitle > à Y</v-list-item-subtitle>
-        </v-list-item-content>
-
-      </div>
-      <div class=" mt-12">
-        <v-list-item-content>
-          <v-list-item-title >vendeur 3</v-list-item-title>
-
-          <v-list-item-subtitle
-              class="text--primary"
-          >
-            vend X
-          </v-list-item-subtitle>
-
-          <v-list-item-subtitle > à Y</v-list-item-subtitle>
-        </v-list-item-content>
-
-      </div>
-      <div >
-        <v-list-item-content>
-          <v-list-item-title >vendeur 4</v-list-item-title>
-
-          <v-list-item-subtitle
-              class="text--primary"
-          >
-            vend X
-          </v-list-item-subtitle>
-
-          <v-list-item-subtitle > à Y</v-list-item-subtitle>
-        </v-list-item-content>
-
-      </div>
     </v-card-text>
 
     <v-divider></v-divider>
@@ -81,8 +49,31 @@
 
 <script>
 export default {
-  name: "Vendeur"
-}
+  name: "Vendeur",
+  data(){ return {
+    desserts: [
+      {
+        name: 'la maman de jules',
+        calories: 'des calins',
+      },
+      {
+        name: 'Ferme de X',
+        calories: 'poulet',
+      },
+      {
+        name: 'Ferme de Y',
+        calories: 'legume',
+      },
+      {
+        name: 'Verger du Y',
+        calories: 'fruit',
+      },
+      {
+        name: 'Coteau de machin',
+        calories: 'vin',
+      }
+    ],}
+}}
 </script>
 
 <style scoped>

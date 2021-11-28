@@ -67,7 +67,7 @@ def get_origin_of_ingredient(ingredient):
     """
     get the origin of the ingredient
     """
-    df = pd.read_csv("D:/Machine Learning Projects/Hackaton EPITA/hackaton_monkys/backend/data/recipies_and_ingredients_data/ingredient_fix.csv")
+    df = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data_treatment/ingredient_fix.csv")
     tmp_df = df.loc[df['ingredient_name'] == ingredient]
     tmp_df = tmp_df.loc[:,"origin"].drop_duplicates()
     return tmp_df.values.tolist()[0]
@@ -76,9 +76,9 @@ def fetch_producer(product):
     """
     :param product: the product  that we need
     """
-    df = pd.read_csv("D:/Machine Learning Projects/Hackaton EPITA/hackaton_monkys/backend/data/generated_dataframe.csv")
+    df = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data_treatment/generated_dataframe.csv")
     #df = df.set_index(df.recipe_title)
-    product_origin = 'VIGNOBLES' #get_origin_of_ingredient(product) TODO : FIX VIGNOBLE to VIGNOBLES !!!
+    product_origin =get_origin_of_ingredient(product) #'VIGNOBLES' #get_origin_of_ingredient(product) TODO : FIX VIGNOBLE to VIGNOBLES !!!
     df_region = region_selection(df, 'BRETAGNE') # Need to add the region as parameter !
     tmp_df = names_selection(df_region, product_origin)
     return tmp_df.values.tolist()

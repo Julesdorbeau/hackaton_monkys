@@ -83,7 +83,7 @@ export default {
           this.isRegister = false;
           this.errorMessage = "";
           this.$refs.form.reset();
-         this.$router.replace({ name: "TasteTest", params: { } });
+         this.$router.replace({ name: "dashboard", params: { } });
        }
        else {
          this.errorMessage = "password did not match"

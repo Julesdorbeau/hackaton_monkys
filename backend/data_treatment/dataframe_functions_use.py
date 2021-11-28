@@ -30,6 +30,12 @@ def region_selection(df, region_choice):
     """
     return df.loc[df['region'] == region_choice]
 
+def names_selection(df, name):
+    """
+    Selection de tout les producteurs en fonction de la region
+    """
+    return df.loc[df['names'] == name]
+
 def ingredients_selection(df):
     """
     Selection d'uniquement tout les ingredients en dropant les duplicatats
@@ -57,11 +63,27 @@ def fetch_ingredient_per_recipe(recipe_name):
     tmp_df = tmp_df.drop_duplicates()
     return tmp_df.values.tolist()
 
+def get_origin_of_ingredient(ingredient):
+    """
+    get the origin of the ingredient
+    """
+    df = pd.read_csv("D:/Machine Learning Projects/Hackaton EPITA/hackaton_monkys/backend/data/recipies_and_ingredients_data/ingredient_fix.csv")
+    tmp_df = df.loc[df['ingredient_name'] == ingredient]
+    tmp_df = tmp_df.loc[:,"origin"].drop_duplicates()
+    return tmp_df.values.tolist()[0]
+
 def fetch_producer(product):
     """
     :param product: the product  that we need
     """
-    df = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data/recipies.csv")
+    df = pd.read_csv("D:/Machine Learning Projects/Hackaton EPITA/hackaton_monkys/backend/data/generated_dataframe.csv")
+    #df = df.set_index(df.recipe_title)
+    product_origin = 'VIGNOBLES' #get_origin_of_ingredient(product) TODO : FIX VIGNOBLE to VIGNOBLES !!!
+    df_region = region_selection(df, 'BRETAGNE') # Need to add the region as parameter !
+    tmp_df = names_selection(df_region, product_origin)
+    return tmp_df.values.tolist()
+    
+    
 def get_empty_ingredient_dict():
     """
     Return un dictionnaire contenant la liste des ingredients et un coef a 0 pour chacun d'eux
@@ -73,10 +95,10 @@ def get_empty_ingredient_dict():
     return res_dict['coeficient']
 
 
-df = pd.read_csv(r"C:\Users\Max\hackaton_monkes\\backend\data_treatment\ingredient_fix.csv")
+#df = pd.read_csv(r"C:\Users\Max\hackaton_monkes\\backend\data_treatment\ingredient_fix.csv")
 pd.set_option('display.max_columns', None)
-df = df.set_index(df.recipe_title)
-df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation', 'origin']]
+#df = df.set_index(df.recipe_title)
+#df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation', 'origin']]
 
 #print(get_empty_ingredient_dict())
 #print(recipe_selection('sugar'))
@@ -89,19 +111,31 @@ df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','pre
 # CREATION OF CLEAN DATA RECIPIES : 
 #df.to_csv('clean_csv_recipies.csv')
 # LECTURE DU CLEAN : 
-df_clean = pd.read_csv(r"C:/Users/Max/hackaton_monkes/backend/data_treatment/clean_csv_recipies.csv")
+#df_clean = pd.read_csv(r"C:/Users/Max/hackaton_monkes/backend/data_treatment/clean_csv_recipies.csv")
 # SI ON VEUT REPASSER EN recipe_title pour index
 #df = df.set_index(df.recipe_title)
 #df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation', 'origin']]
 
 # CONVERTION TO JSON 
-df_json = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data/recipies_and_ingredients_data/ingredient.csv")
-pd.set_option('display.max_columns', None)
+#df_json = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data/recipies_and_ingredients_data/ingredient.csv")
+#pd.set_option('display.max_columns', None)
 # Pour save en fichier .json : js = df.to_json('json_test.json', orient = 'index')
-js = df_clean.to_json(orient = 'index')
-print(js)
+#js = df_clean.to_json(orient = 'index')
+#print(js)
 
 
+#df = pd.read_csv("D:/Machine Learning Projects/Hackaton EPITA/hackaton_monkys/backend/data/generated_dataframe.csv")
+#origin = get_origin_of_ingredient('dry white wine')
+#print(origin)
+#print(names_selection(df, origin))
+
+"""
+Print the result of all the dry white wine search producteurs in BRETAGNE 
+Oublie pas de changer les chemins pour le load des csv :)
+"""
+print(fetch_producer('dry white wine'))
+
+#print(get_origin_of_ingredient('brown sugar'))
 
 """
 Creating the dictionnary for the ingredients

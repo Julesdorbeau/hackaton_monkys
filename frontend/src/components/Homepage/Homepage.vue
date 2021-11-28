@@ -14,7 +14,7 @@
         <div class="display-1 font-weight-bold white--text text-xs-center">
           With Hanuman, re-etasblish a link with local productor and discover a new world of flavours
         </div>
-        <v-btn  class="mt-5 " color="green lighten-2"  to="/Login">
+        <v-btn  class="mt-5 " color="green lighten-2"  to="/dashboard">
           <v-icon large color="white">Let's go </v-icon>
         </v-btn>
       </v-layout>

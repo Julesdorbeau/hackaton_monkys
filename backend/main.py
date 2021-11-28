@@ -2,6 +2,8 @@ import flask
 from flask import Flask, json, redirect, url_for, render_template, request, session, app
 
 #
+import Services.Tastes
+
 companies = [{"id": 1, "name": "Company One"}, {"id": 2, "name": "Company Two"}]
 api = Flask(__name__)
 mock_response=[{"name":"max","meals":"yeah"}]
@@ -12,7 +14,7 @@ https://parzibyte.me/blog
 
 @api.route('/companies', methods=['GET'])
 def get_companies():
-  rresponse  = flask.Response(json.dumps("{<\"code\":200}"))
+  response  = flask.Response(json.dumps("{<\"code\":200}"))
   response.headers.add("Access-Control-Allow-Origin", "*")
   return response
 @api.route('/login', methods=['GET'])
@@ -23,9 +25,8 @@ def get_login():
 @api.route('/taste',methods=['POST','OPTION'])
 def post_taste():
     print(request.json)
-
-
-    response  = flask.Response(json.dumps("{<\"code\":200}"))
+    tab = Services.Tastes.launch_ia(request.json)
+    response  = flask.Response(json.dumps(tab))
     response.headers.add("Access-Control-Allow-Origin", "*")
     response.headers[
         "Access-Control-Allow-Origin"] = "*"  # <- You can change "*" for a domain for example "http://localhost"

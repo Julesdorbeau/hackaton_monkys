@@ -7,7 +7,7 @@
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12 green lighten-5" v-if="!this.localisation_done">
               <v-toolbar dark color="green lighten-4">
-                <v-toolbar-title>Where u at bitch ?</v-toolbar-title>
+                <v-toolbar-title>Please enable géolocalisation</v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
                   <template>
@@ -135,7 +135,7 @@ export default {
       kcalcalifornian_burger:"300kcal",
       kcalCalifornia_Quesadilla:"300kcal",
       kcalCrab_Linguine:"400kcal",
-      kcalFudge_Brownie_Pie:"5",
+      kcalFudge_Brownie_Pie:"5$",
     }},
 methods: {
   display_loc_please(){
@@ -182,10 +182,37 @@ methods: {
 
   },
   Push_Note(note){
-    this.notes.push(note)
+    switch (this.compteur) {
+      case 0:
+        this.notes.push(("Fettuccine with Lamb and Mint:"+note))
+            break
+      case 1:
+        this.notes.push(("Risotto Con Frutti Di Mare:"+note))
+        break
+      case 2:
+        this.notes.push(("Fettuccine with Lamb and Mint:"+note))
+        break
+      case 3:
+        this.notes.push(("California-Style Turkey Burger:"+note))
+        break
+      case 4:
+        this.notes.push(("California-Style Turkey Burger:"+note))
+        break
+      case 5:
+        this.notes.push(("California Quesadilla:"+note))
+        break
+      case 6:
+        this.notes.push(("Crab Linguine:"+note))
+        break
+      case 7:
+        this.notes.push(("Fudge Brownie Pie:"+note))
+        break
+    }
+    console.log(this.notes)
+
   },
   Change_dish(){
-    if(this.compteur==5){
+    if(this.compteur==6){
       fetch('http://127.0.0.1:5000/taste', {
         method: 'POST', // or 'PUT'
         headers: {
@@ -196,12 +223,14 @@ methods: {
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
+            console.log("emeting")
+            this.$emit('on-recipes-change',data)
           })
           .catch((error) => {
             console.error('Error:', error);
           });
 
-      this.$router.replace({ name: "dashboard", params: { username: this.coutratatouille } });
+
     }
     const title = document.getElementById("titre_plat");
     const prix= document.getElementById("prix_portion")

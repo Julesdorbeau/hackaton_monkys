@@ -40,24 +40,40 @@ def recipe_selection(ingredient_choice):
     """
     Return la liste des toutes les recettes contenants l'ingredient demande
     """
-    df = pd.read_csv("../data/recipies_and_ingredients_data/ingredient.csv")
+    df = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data/recipies_and_ingredients_data/ingredient.csv")
     tmp_df = df.loc[df['ingredient_name'] == ingredient_choice]
     tmp_df = tmp_df.loc[:,"recipe_title"]
     tmp_df = tmp_df.drop_duplicates()
     return tmp_df.values.tolist()
 
+def fetch_ingredient_per_recipe(recipe_name):
+    """
+    fetch all the igredient of a recipe.
+
+    """
+    df = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data/recipies_and_ingredients_data/ingredient.csv")
+    tmp_df = df.loc[df['recipe_title'] == recipe_name]
+    tmp_df = tmp_df.loc[:,"ingredient_name"]
+    tmp_df = tmp_df.drop_duplicates()
+    return tmp_df.values.tolist()
+
+def fetch_producer(product):
+    """
+    :param product: the product  that we need
+    """
+    df = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data/recipies.csv")
 def get_empty_ingredient_dict():
     """
     Return un dictionnaire contenant la liste des ingredients et un coef a 0 pour chacun d'eux
     """
-    df = pd.read_csv("../data/recipies_and_ingredients_data/ingredient_dict.csv")
+    df = pd.read_csv(r"C:\Users\Max\hackaton_monkes\\backend\/data/recipies_and_ingredients_data/ingredient_dict.csv")
     df = df.set_index(df.ingredient)
     res_dict = df.to_dict()
     # Taking only the coeficient dictionnary (the other one is only strings so not usable)
     return res_dict['coeficient']
 
 
-df = pd.read_csv("../data/recipies_and_ingredients_data/ingredient_fix.csv")
+df = pd.read_csv(r"C:\Users\Max\hackaton_monkes\\backend\data_treatment\ingredient_fix.csv")
 pd.set_option('display.max_columns', None)
 df = df.set_index(df.recipe_title)
 df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation', 'origin']]
@@ -73,13 +89,13 @@ df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','pre
 # CREATION OF CLEAN DATA RECIPIES : 
 #df.to_csv('clean_csv_recipies.csv')
 # LECTURE DU CLEAN : 
-df_clean = pd.read_csv("clean_csv_recipies.csv")
+df_clean = pd.read_csv(r"C:/Users/Max/hackaton_monkes/backend/data_treatment/clean_csv_recipies.csv")
 # SI ON VEUT REPASSER EN recipe_title pour index
 #df = df.set_index(df.recipe_title)
 #df = df[['ingredient_name','ingredient_category','max_qty','min_qty','unit','preparation', 'origin']]
 
 # CONVERTION TO JSON 
-df_json = pd.read_csv("../data/recipies_and_ingredients_data/ingredient.csv")
+df_json = pd.read_csv("C:/Users/Max/hackaton_monkes/backend/data/recipies_and_ingredients_data/ingredient.csv")
 pd.set_option('display.max_columns', None)
 # Pour save en fichier .json : js = df.to_json('json_test.json', orient = 'index')
 js = df_clean.to_json(orient = 'index')

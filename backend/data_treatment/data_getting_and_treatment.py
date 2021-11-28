@@ -45,4 +45,7 @@ def producteur_csv_generation() :
 
     generation_df.drop_duplicates(keep=False)
     generation_df.to_csv('generated_dataframe.csv')
-    
+    """""""""
+if __name__ == '__main__':
+    producteur_csv_generation()
+"""""""""

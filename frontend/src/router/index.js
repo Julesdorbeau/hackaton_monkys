@@ -18,7 +18,9 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
-    props: {}
+    props: {
+      recipes:[]
+    }
   }, {
     path: '/TasteTest',
     name: 'TasteTest',
